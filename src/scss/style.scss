@@ -1,0 +1,174 @@
+$bg-color: #0f172a;
+$card-bg: #1e293b;
+$text-main: #f8fafc;
+$text-muted: #94a3b8;
+$accent-color: #3b82f6;
+$accent-hover: #2563eb;
+$font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+@mixin transition-ease {
+  transition: all 0.3s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-stack;
+  background-color: $bg-color;
+  color: $text-main;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+body.fade-out {
+  animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 60px 0 40px;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 1.1rem;
+  }
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding-bottom: 60px;
+}
+
+.manga-card {
+  background-color: $card-bg;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  @include transition-ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+
+    .manga-image {
+      transform: scale(1.05);
+    }
+  }
+
+  .manga-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    @include transition-ease;
+  }
+
+  .manga-content {
+    padding: 24px;
+
+    .genre {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $accent-color;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+.btn {
+  display: inline-block;
+  background-color: $accent-color;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  @include transition-ease;
+
+  &:hover {
+    background-color: $accent-hover;
+  }
+}
+
+.detail-panel {
+  background-color: $card-bg;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.detail-panel__cover {
+  height: 400px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/en/c/c6/Blue_Lock_manga_volume_1.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.detail-panel__title {
+  margin-bottom: 20px;
+}
+
+.detail-panel__text {
+  color: $text-muted;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: $text-muted;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
